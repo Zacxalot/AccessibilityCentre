@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://_images/Ship/Spaceship.png" type="Texture" id=1]
+
+[node name="HealthIcon" type="Control"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 48.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Icon" type="Sprite" parent="."]
+position = Vector2( 17, 13 )
+rotation = 5.44543
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )

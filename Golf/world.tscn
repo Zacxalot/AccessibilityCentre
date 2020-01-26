@@ -1,0 +1,399 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://tilesetOpenGameBackground.png" type="Texture" id=1]
+[ext_resource path="res://Ardentryst-TilesAndObjects/Ardentryst-grass.png" type="Texture" id=2]
+[ext_resource path="res://Ardentryst-TilesAndObjects/Ardentryst-cstl_floor1.png" type="Texture" id=3]
+[ext_resource path="res://KinematicBody2D.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/Player/Run0.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/Run1.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/Run2.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/Run3.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/Run4.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/Run7.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Player/Jump1.png" type="Texture" id=11]
+[ext_resource path="res://transparent PNG/spike B.png" type="Texture" id=12]
+[ext_resource path="res://transparent PNG/spike C.png" type="Texture" id=13]
+
+[sub_resource type="TileSet" id=7]
+0/name = "tilesetOpenGameBackground.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 24, 320, 232 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( 0, 0, 40, 0, 40, 44, 0, 44 )
+
+[sub_resource type="TileSet" id=9]
+0/name = "Ardentryst-grass.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 40, 44 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+points = PoolVector2Array( 0, 0, 40, 0, 40, 40, 0, 40 )
+
+[sub_resource type="TileSet" id=11]
+0/name = "Ardentryst-cstl_floor1.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 40, 40 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 10 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 16, 26.1291 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "sprint",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 82.49, 83.7709 )
+
+[sub_resource type="CapsuleShape2D" id=15]
+radius = 55.9912
+height = 189.823
+
+[node name="World" type="Node2D"]
+
+[node name="background" type="TileMap" parent="."]
+tile_set = SubResource( 7 )
+format = 1
+tile_data = PoolIntArray( 6, 0, 0, 11, 0, 0, 16, 0, 0, 21, 0, 0, 26, 0, 0, 31, 0, 0, 36, 0, 0, 41, 0, 0, 46, 0, 0, 51, 0, 0, 56, 0, 0, 61, 0, 0, 66, 0, 0, 71, 0, 0, 76, 0, 0, 81, 0, 0, 86, 0, 0, 91, 0, 0, 96, 0, 0, 101, 0, 0, 106, 0, 0, 111, 0, 0 )
+
+[node name="floor" type="TileMap" parent="."]
+tile_set = SubResource( 9 )
+cell_size = Vector2( 40, 40 )
+format = 1
+tile_data = PoolIntArray( 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 327696, 0, 0, 327697, 0, 0, 327698, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 0, 0, 327703, 0, 0, 327704, 0, 0, 327705, 0, 0, 327706, 0, 0, 327707, 0, 0, 327708, 0, 0, 327709, 0, 0, 327710, 0, 0, 327711, 0, 0, 327712, 0, 0, 327713, 0, 0, 327714, 0, 0, 327715, 0, 0, 327716, 0, 0, 327717, 0, 0, 327718, 0, 0, 327719, 0, 0, 327720, 0, 0, 327721, 0, 0, 327722, 0, 0, 327723, 0, 0, 327724, 0, 0, 327725, 0, 0, 327726, 0, 0, 327727, 0, 0, 327728, 0, 0, 327729, 0, 0, 327730, 0, 0, 327731, 0, 0, 327732, 0, 0, 327733, 0, 0, 327734, 0, 0, 327735, 0, 0, 327736, 0, 0, 327737, 0, 0, 327738, 0, 0, 327739, 0, 0, 327740, 0, 0, 327741, 0, 0, 327742, 0, 0, 327743, 0, 0, 327744, 0, 0, 327745, 0, 0, 327746, 0, 0, 327747, 0, 0, 327748, 0, 0, 327749, 0, 0, 327750, 0, 0, 327751, 0, 0, 327752, 0, 0, 327753, 0, 0, 327754, 0, 0, 327755, 0, 0, 327756, 0, 0, 327757, 0, 0, 327758, 0, 0, 327759, 0, 0, 327760, 0, 0, 327761, 0, 0, 327762, 0, 0, 327763, 0, 0, 327764, 0, 0, 327765, 0, 0, 327766, 0, 0, 327767, 0, 0, 327768, 0, 0, 327769, 0, 0, 327770, 0, 0, 327771, 0, 0, 327772, 0, 0, 327773, 0, 0, 327774, 0, 0, 327775, 0, 0, 327776, 0, 0, 327777, 0, 0, 327778, 0, 0, 327779, 0, 0, 327780, 0, 0, 327781, 0, 0, 327782, 0, 0, 327783, 0, 0, 327784, 0, 0, 327785, 0, 0, 327786, 0, 0, 327787, 0, 0, 327788, 0, 0, 327789, 0, 0, 327790, 0, 0, 327791, 0, 0, 327792, 0, 0, 327793, 0, 0, 327794, 0, 0, 327795, 0, 0, 327796, 0, 0, 327797, 0, 0, 327798, 0, 0, 327799, 0, 0, 327800, 0, 0, 327801, 0, 0, 327802, 0, 0, 327803, 0, 0, 327804, 0, 0, 327805, 0, 0, 327806, 0, 0, 327807, 0, 0, 327808, 0, 0, 327809, 0, 0, 327810, 0, 0, 327811, 0, 0, 327812, 0, 0, 327813, 0, 0, 327814, 0, 0, 327815, 0, 0, 327816, 0, 0, 327817, 0, 0, 327818, 0, 0, 327819, 0, 0, 327820, 0, 0, 327821, 0, 0, 327822, 0, 0, 327823, 0, 0, 327824, 0, 0, 327825, 0, 0, 327826, 0, 0, 327827, 0, 0, 327828, 0, 0, 327829, 0, 0, 327830, 0, 0, 327831, 0, 0, 327832, 0, 0, 327833, 0, 0, 327834, 0, 0, 327835, 0, 0, 327836, 0, 0, 327837, 0, 0, 327838, 0, 0, 327839, 0, 0, 327840, 0, 0, 327841, 0, 0, 327842, 0, 0, 327843, 0, 0, 327844, 0, 0, 327845, 0, 0, 327846, 0, 0, 327847, 0, 0, 327848, 0, 0, 327849, 0, 0, 327850, 0, 0, 327851, 0, 0, 327852, 0, 0, 327853, 0, 0, 327854, 0, 0, 327855, 0, 0, 327856, 0, 0, 327857, 0, 0, 327858, 0, 0, 327859, 0, 0, 327860, 0, 0, 327861, 0, 0, 327862, 0, 0, 327863, 0, 0 )
+
+[node name="blocks" type="TileMap" parent="."]
+tile_set = SubResource( 11 )
+cell_size = Vector2( 40, 40 )
+format = 1
+tile_data = PoolIntArray( -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65516, 0, 0, -65515, 0, 0, -65514, 0, 0, -65513, 0, 0, -65512, 0, 0, -65511, 0, 0, -65510, 0, 0, -65509, 0, 0, -65508, 0, 0, -65507, 0, 0, -65506, 0, 0, -65505, 0, 0, -65504, 0, 0, -65503, 0, 0, -65502, 0, 0, -65501, 0, 0, -65500, 0, 0, -65499, 0, 0, -65498, 0, 0, -65497, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 0, 0, -65493, 0, 0, -65492, 0, 0, -65491, 0, 0, -65490, 0, 0, -65489, 0, 0, -65488, 0, 0, -65487, 0, 0, -65486, 0, 0, -65485, 0, 0, -65484, 0, 0, -65483, 0, 0, -65482, 0, 0, -65481, 0, 0, -65480, 0, 0, -65479, 0, 0, -65478, 0, 0, -65477, 0, 0, -65476, 0, 0, -65475, 0, 0, -65474, 0, 0, -65473, 0, 0, -65472, 0, 0, -65471, 0, 0, -65470, 0, 0, -65469, 0, 0, -65468, 0, 0, -65467, 0, 0, -65466, 0, 0, -65465, 0, 0, -65464, 0, 0, -65463, 0, 0, -65462, 0, 0, -65461, 0, 0, -65460, 0, 0, -65459, 0, 0, -65458, 0, 0, -65457, 0, 0, -65456, 0, 0, -65455, 0, 0, -65454, 0, 0, -65453, 0, 0, -65452, 0, 0, -65451, 0, 0, -65450, 0, 0, -65449, 0, 0, -65448, 0, 0, -65447, 0, 0, -65446, 0, 0, -65445, 0, 0, -65444, 0, 0, -65443, 0, 0, -65442, 0, 0, -65441, 0, 0, -65440, 0, 0, -65439, 0, 0, -65438, 0, 0, -65437, 0, 0, -65436, 0, 0, -65435, 0, 0, -65434, 0, 0, -65433, 0, 0, -65432, 0, 0, -65431, 0, 0, -65430, 0, 0, -65429, 0, 0, -65428, 0, 0, -65427, 0, 0, -65426, 0, 0, -65425, 0, 0, -65424, 0, 0, -65423, 0, 0, -65422, 0, 0, -65421, 0, 0, -65420, 0, 0, -65419, 0, 0, -65418, 0, 0, -65417, 0, 0, -65416, 0, 0, -65415, 0, 0, -65414, 0, 0, -65413, 0, 0, -65412, 0, 0, -65411, 0, 0, -65410, 0, 0, -65409, 0, 0, -65408, 0, 0, -65407, 0, 0, -65406, 0, 0, -65405, 0, 0, -65404, 0, 0, -65403, 0, 0, -65402, 0, 0, -65401, 0, 0, -65400, 0, 0, -65399, 0, 0, -65398, 0, 0, -65397, 0, 0, -65396, 0, 0, -65395, 0, 0, -65394, 0, 0, -65393, 0, 0, -65392, 0, 0, -65391, 0, 0, -65390, 0, 0, -65389, 0, 0, -65388, 0, 0, -65387, 0, 0, -65386, 0, 0, -65385, 0, 0, -65384, 0, 0, -65383, 0, 0, -65382, 0, 0, -65381, 0, 0, -65380, 0, 0, -65379, 0, 0, -65378, 0, 0, -65377, 0, 0, -65376, 0, 0, -65375, 0, 0, -65374, 0, 0, -65373, 0, 0, -65372, 0, 0, -65371, 0, 0, -65370, 0, 0, -65369, 0, 0, -65368, 0, 0, -65367, 0, 0, -65366, 0, 0, -65365, 0, 0, -65364, 0, 0, -65363, 0, 0, -65362, 0, 0, -65361, 0, 0, -65360, 0, 0, -65359, 0, 0, -65358, 0, 0, -65357, 0, 0, -65356, 0, 0, -65355, 0, 0, -65354, 0, 0, -65353, 0, 0, -65352, 0, 0, 9, 0, 0, 184, 0, 0, 65545, 0, 0, 65720, 0, 0, 131081, 0, 0, 131256, 0, 0, 196617, 0, 0, 196792, 0, 0, 262153, 0, 0, 262328, 0, 0, 327689, 0, 0 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 464, 96 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( -31.5367, 67.8025 )
+shape = SubResource( 12 )
+
+[node name="Sprite" type="AnimatedSprite" parent="Player"]
+position = Vector2( -32, 64 )
+frames = SubResource( 13 )
+animation = "sprint"
+frame = 3
+playing = true
+
+[node name="Camera2D" type="Camera2D" parent="Player/Sprite"]
+position = Vector2( 64, 0 )
+current = true
+
+[node name="spikeBoi" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 848, 192 )
+scale = Vector2( 0.3, 0.2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikeBoi"]
+texture = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikeBoi"]
+shape = SubResource( 14 )
+
+[node name="spikeBoi2" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 2190.83, 190.33 )
+scale = Vector2( 0.3, 0.2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikeBoi2"]
+texture = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikeBoi2"]
+shape = SubResource( 14 )
+
+[node name="spikeBoi3" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1789.98, 190.33 )
+scale = Vector2( 0.3, 0.2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikeBoi3"]
+texture = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikeBoi3"]
+shape = SubResource( 14 )
+
+[node name="spikeBoi4" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 2448.04, 195.34 )
+scale = Vector2( 0.3, 0.2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikeBoi4"]
+texture = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikeBoi4"]
+shape = SubResource( 14 )
+
+[node name="spikeBoi5" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1247.17, 190.33 )
+scale = Vector2( 0.3, 0.2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikeBoi5"]
+texture = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikeBoi5"]
+shape = SubResource( 14 )
+
+[node name="spikeBoi6" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 3230.93, 192 )
+scale = Vector2( 0.3, 0.2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikeBoi6"]
+texture = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikeBoi6"]
+shape = SubResource( 14 )
+
+[node name="spikeBoi7" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 4539.32, 188.299 )
+scale = Vector2( 0.3, 0.2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikeBoi7"]
+texture = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikeBoi7"]
+shape = SubResource( 14 )
+
+[node name="spikeBoi8" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 3536.29, 188.299 )
+scale = Vector2( 0.3, 0.2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikeBoi8"]
+texture = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikeBoi8"]
+shape = SubResource( 14 )
+
+[node name="spikeBoi9" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 5050.09, 186.448 )
+scale = Vector2( 0.3, 0.2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikeBoi9"]
+texture = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikeBoi9"]
+shape = SubResource( 14 )
+
+[node name="spikierThing" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 2892.07, 169.16 )
+scale = Vector2( 0.4, 0.3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikierThing"]
+texture = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikierThing"]
+position = Vector2( 0, 31.0252 )
+shape = SubResource( 15 )
+
+[node name="spikierThing2" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 4811.16, 169.16 )
+scale = Vector2( 0.4, 0.3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikierThing2"]
+texture = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikierThing2"]
+position = Vector2( 0, 31.0252 )
+shape = SubResource( 15 )
+
+[node name="spikierThing3" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 3876.6, 171.01 )
+scale = Vector2( 0.4, 0.3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikierThing3"]
+texture = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikierThing3"]
+position = Vector2( 0, 31.0252 )
+shape = SubResource( 15 )
+
+[node name="spikierThing4" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 4304.09, 167.309 )
+scale = Vector2( 0.4, 0.3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikierThing4"]
+texture = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikierThing4"]
+position = Vector2( 0, 31.0252 )
+shape = SubResource( 15 )
+
+[node name="spikierThing5" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 6898.66, 169.16 )
+scale = Vector2( 0.4, 0.3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikierThing5"]
+texture = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikierThing5"]
+position = Vector2( 0, 31.0252 )
+shape = SubResource( 15 )
+
+[node name="spikierThing6" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 5371.9, 165.458 )
+scale = Vector2( 0.4, 0.3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikierThing6"]
+texture = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikierThing6"]
+position = Vector2( 0, 31.0252 )
+shape = SubResource( 15 )
+
+[node name="spikierThing7" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 6423.05, 174.712 )
+scale = Vector2( 0.4, 0.3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikierThing7"]
+texture = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikierThing7"]
+position = Vector2( 0, 31.0252 )
+shape = SubResource( 15 )
+
+[node name="spikierThing8" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 5708.71, 172.861 )
+scale = Vector2( 0.4, 0.3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikierThing8"]
+texture = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikierThing8"]
+position = Vector2( 0, 31.0252 )
+shape = SubResource( 15 )
+
+[node name="spikierThing9" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 6028.87, 172.861 )
+scale = Vector2( 0.4, 0.3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="spikierThing9"]
+texture = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikierThing9"]
+position = Vector2( 0, 31.0252 )
+shape = SubResource( 15 )

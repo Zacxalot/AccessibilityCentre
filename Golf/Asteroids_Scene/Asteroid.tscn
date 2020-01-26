@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://_Scripts/Asteroid.gd" type="Script" id=1]
+[ext_resource path="res://_images/Asteroids/big_asteroid.png" type="Texture" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.5
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 39.3348
+
+[node name="Asteroid" type="RigidBody2D"]
+position = Vector2( 212.57, 159.629 )
+collision_mask = 7
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+linear_velocity = Vector2( 100, 0 )
+linear_damp = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )

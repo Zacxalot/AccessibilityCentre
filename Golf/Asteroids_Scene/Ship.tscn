@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://_Scripts/Ship.gd" type="Script" id=1]
+[ext_resource path="res://_images/Ship/Spaceship.png" type="Texture" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.2
+
+[node name="Ship" type="RigidBody2D"]
+position = Vector2( 484.878, 325.358 )
+z_index = 5
+collision_layer = 2
+collision_mask = 0
+mass = 0.5
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="Collider" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -35.8611, -25.3935, -4.8284, -32.1586, 9.63284, -8.51166, 30.8593, -2.73959, 31.2316, 2.90836, 9.5087, 8.246, -4.45599, 32.0171, -36.2335, 25.0657 )

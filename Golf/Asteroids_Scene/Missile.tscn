@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Missile.gd" type="Script" id=1]
+[ext_resource path="res://_images/Missle/shot.png" type="Texture" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9.11324, 3.13021 )
+
+[node name="Missile" type="RigidBody2D"]
+position = Vector2( 402, 283 )
+collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )

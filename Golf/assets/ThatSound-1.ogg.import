@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ThatSound-1.ogg-9e41e6d229c864a2c3325f1ba1309d70.oggstr"
+
+[deps]
+
+source_file="res://assets/ThatSound-1.ogg"
+dest_files=[ "res://.import/ThatSound-1.ogg-9e41e6d229c864a2c3325f1ba1309d70.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

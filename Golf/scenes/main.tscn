@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://art/ui/Background.jpg" type="Texture" id=1]
+[ext_resource path="res://art/ui/background panel.png" type="Texture" id=2]
+[ext_resource path="res://scripts/tile_backgrounds.gd" type="Script" id=3]
+[ext_resource path="res://scenes/tile_background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/grid.gd" type="Script" id=5]
+[ext_resource path="res://scripts/score_keeper.gd" type="Script" id=6]
+[ext_resource path="res://art/ui/rounded rectangle.png" type="Texture" id=7]
+[ext_resource path="res://scenes/follow.gd" type="Script" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 255.016, 38.1034 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 237.28, 232.025 )
+
+[sub_resource type="CircleShape2D" id=3]
+
+[node name="main" type="Node2D"]
+position = Vector2( 0, -154.23 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+margin_right = 1024.0
+margin_bottom = 1024.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 512, 512 )
+texture = ExtResource( 2 )
+
+[node name="tile_backgrounds" type="Node2D" parent="."]
+script = ExtResource( 3 )
+tile_background = ExtResource( 4 )
+
+[node name="grid" type="Node2D" parent="."]
+script = ExtResource( 5 )
+x_start = 320
+y_start = 704
+offset = 128
+num_starting_pieces = 3
+width = 4
+height = 4
+
+[node name="score_keeper" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="up_button" type="Sprite" parent="."]
+position = Vector2( 511.142, 209.156 )
+scale = Vector2( 1.09197, 0.150946 )
+texture = ExtResource( 7 )
+
+[node name="up_area" type="Area2D" parent="up_button"]
+position = Vector2( -468.091, -2383.56 )
+scale = Vector2( 0.915775, 6.62489 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="up_button/up_area"]
+position = Vector2( 511.142, 209.156 )
+shape = SubResource( 1 )
+
+[node name="left_button" type="Sprite" parent="."]
+position = Vector2( 197.54, 516.314 )
+scale = Vector2( 0.174615, 0.992789 )
+texture = ExtResource( 7 )
+
+[node name="left_area" type="Area2D" parent="left_button"]
+position = Vector2( -468.091, -1537.36 )
+scale = Vector2( 0.915775, 6.62489 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_button/left_area"]
+position = Vector2( 511.142, 209.156 )
+shape = SubResource( 1 )
+
+[node name="right_button" type="Sprite" parent="."]
+position = Vector2( 827.608, 512.018 )
+scale = Vector2( 0.174615, 0.992789 )
+texture = ExtResource( 7 )
+
+[node name="right_area" type="Area2D" parent="right_button"]
+position = Vector2( -468.091, -1537.36 )
+scale = Vector2( 0.915775, 6.62489 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_button/right_area"]
+position = Vector2( 511.142, 209.156 )
+shape = SubResource( 1 )
+
+[node name="down_button" type="Sprite" parent="."]
+position = Vector2( 506.846, 817.744 )
+scale = Vector2( 1.09197, 0.150946 )
+texture = ExtResource( 7 )
+
+[node name="down_area" type="Area2D" parent="down_button"]
+position = Vector2( 0, -997.93 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="down_button/down_area"]
+shape = SubResource( 2 )
+
+[node name="mouse_sprite" type="Sprite" parent="."]
+script = ExtResource( 8 )
+
+[node name="mouse_area" type="Area2D" parent="mouse_sprite"]
+
+[node name="mouse_collision" type="CollisionShape2D" parent="mouse_sprite/mouse_area"]
+shape = SubResource( 3 )
+[connection signal="score_changed" from="grid" to="score_keeper" method="_on_grid_score_changed"]
+[connection signal="input_event" from="up_button/up_area" to="grid" method="_on_Area2D_input_event"]
+[connection signal="mouse_entered" from="up_button/up_area" to="grid" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="up_button/up_area" to="grid" method="_on_Area2D_mouse_exited"]
+[connection signal="input_event" from="left_button/left_area" to="grid" method="_on_Area2D_input_event"]
+[connection signal="mouse_entered" from="left_button/left_area" to="grid" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="left_button/left_area" to="grid" method="_on_Area2D_mouse_exited"]
+[connection signal="input_event" from="right_button/right_area" to="grid" method="_on_Area2D_input_event"]
+[connection signal="mouse_entered" from="right_button/right_area" to="grid" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="right_button/right_area" to="grid" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="down_button/down_area" to="grid" method="_on_down_area_mouse_entered"]
+[connection signal="mouse_exited" from="down_button/down_area" to="grid" method="_on_down_area_mouse_exited"]
+[connection signal="area_entered" from="mouse_sprite/mouse_area" to="grid" method="_on_mouse_area_area_entered"]
+[connection signal="area_exited" from="mouse_sprite/mouse_area" to="grid" method="_on_mouse_area_area_exited"]

@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Launcher.gd" type="Script" id=1]
+[ext_resource path="res://Line2D.gd" type="Script" id=2]
+[ext_resource path="res://assets/ThatSound-1.ogg" type="AudioStream" id=3]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -19.0
+margin_top = -256.63
+margin_right = 19.0
+margin_bottom = -236.63
+rect_scale = Vector2( 5, 5 )
+rect_pivot_offset = Vector2( 19, 0 )
+text = "Golf"
+
+[node name="Button2" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.5
+margin_top = -121.89
+margin_right = 36.5
+margin_bottom = -101.89
+rect_scale = Vector2( 5, 5 )
+rect_pivot_offset = Vector2( 36, 0 )
+text = "Asteroids"
+
+[node name="Button3" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.5
+margin_top = 18.3
+margin_right = 36.5
+margin_bottom = 38.3
+rect_scale = Vector2( 5, 5 )
+rect_pivot_offset = Vector2( 36, 0 )
+text = "Jump"
+
+[node name="Button4" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.5
+margin_top = 156.102
+margin_right = 36.5
+margin_bottom = 176.102
+rect_scale = Vector2( 5, 5 )
+rect_pivot_offset = Vector2( 36, 0 )
+text = "2048"
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = 3
+z_as_relative = false
+points = PoolVector2Array( 0, 0, 0, 16 )
+width = 0.0
+default_color = Color( 0, 1, 0.976471, 1 )
+texture_mode = 425058897
+script = ExtResource( 2 )
+
+[node name="Line2D" type="Line2D" parent="Line2D"]
+z_as_relative = false
+points = PoolVector2Array( 0, 0, 0, 16 )
+width = 60.0
+default_color = Color( 0.333333, 0.333333, 0.333333, 0.756863 )
+texture_mode = 425058897
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -17.6
+autoplay = true
+[connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="mouse_entered" from="Button2" to="." method="_on_Button2_mouse_entered"]
+[connection signal="mouse_exited" from="Button2" to="." method="_on_Button2_mouse_exited"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]
+[connection signal="mouse_entered" from="Button3" to="." method="_on_Button3_mouse_entered"]
+[connection signal="mouse_exited" from="Button3" to="." method="_on_Button3_mouse_exited"]
+[connection signal="pressed" from="Button3" to="." method="_on_Button3_pressed"]
+[connection signal="mouse_entered" from="Button4" to="." method="_on_Button4_mouse_entered"]
+[connection signal="mouse_exited" from="Button4" to="." method="_on_Button4_mouse_exited"]
+[connection signal="pressed" from="Button4" to="." method="_on_Button4_pressed"]
